@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+
+<head>
+  <!-- Required meta tags -->
+  <title>Bitácoras login</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  {% load static %}
+  {% load crispy_forms_tags %}
+
+  <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+
+  <!-- Bootstrap 4.6.2 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+  <!-- Fonts - Diseno Obelisco -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+  </link>
+
+  <!-- Custom css -->
+  <link rel="stylesheet" href="{% static 'css/custom.css' %}" />
+
+</head>
+
+<body class="container text-center bg-dark text-secondary">
+  {% if form.errors %}
+  <div class="row mt-5 justify-content-center">
+    <div class="alert alert-danger alert-dismissible fade show">
+      <strong>Su nombre de usuario y contraseña no coinciden. Inténtelo nuevamente.</strong>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  </div>
+  {% endif %}
+
+  {% if next %}
+  <div class="row mt-5 justify-content-center">
+    {% if user.is_authenticated %}
+    <div class="alert alert-warning alert-dismissible fade show">
+      <strong>Su cuenta no tiene acceso a esta página. Para proceder,
+        por favor inicie sesión con una cuenta que tenga acceso.</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% else %}
+    <div class="alert alert-info alert-dismissible fade show">
+      <strong>Por favor, inicie sesión para ver esta página.</strong>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% endif %}
+  </div>
+  {% endif %}
+  <div class="row mt-5 pt-5">
+    <!-- <div class="col-12 w-100 mb-3">
+      <img src="{% static 'img/BA-color.jpg' %}" class="rounded-circle" alt="logo GCABA" height="100">
+    </div> -->
+    <div class="col-12 mt-2 font-weight-bold text-secondary h3">BITÁCORA</div>
+    <div class="col-12 mt-2 font-weight-bold text-secondary h5">
+      Secretaría de Gobierno y Vínculo Ciudadano
+    </div>
+    <div class="col-8 col-sm-3 m-auto mt-5">
+
+      <form method="post" action="" class="mt-5">
+        {% csrf_token %}
+        <div class="form-outline mb-4">
+          {{ form.username|as_crispy_field}}
+        </div>
+        <div class="form-outline mb-4">
+          {{ form.password|as_crispy_field}}
+        </div>
+        <div class="pt-1 pb-1">
+          <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 px-5" type="submit">Ingresar</button>
+          <!-- <a class="text-muted" href="#!">Forgot password?</a> -->
+        </div>
+      </form>
+    </div>
+
+
+  </div>
+  <!-- Footer -->
+  <footer class="row text-center p-2 fixed-bottom border-top border-primary bg-secondary text-white">
+    <small class="font-weight-bold col-12">
+      &copy; Bitácora - <span id="currentYear"></span>
+      <script>
+        // JavaScript para agregar el año actual
+        document.getElementById("currentYear").textContent = new Date().getFullYear();
+      </script>
+      <!-- <img class="mx-2" src="{% static 'img/ciudad-ba-sm.svg' %}" alt="Ciudad de Buenos Aires" height="25"> -->
+    </small>
+  </footer>
+  <!-- /.Footer -->
+
+  <!-- Bootstrap JavaScript Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+    crossorigin="anonymous"></script>
+  <script>
+    // Código JavaScript para eliminar la alerta del DOM
+    setTimeout(function () {
+      const alert = document.querySelector('.alert-dismissible');
+      if (alert) {
+        $('.alert').alert('close')
+      }
+    }, 4000); // Cambia 3000 al tiempo que desees en milisegundos
+
+  </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block body%}
+<div class="container mt-5">
+    <div class="row justify-content-center" >
+        <div class="col-sm-6">
+            <div class="card border-danger mt-5  text-white">
+                <div class="card-header bg-danger">
+                    <div class="card-title h5">
+
+                        Eliminar entrada de bitácora
+                    </div>
+                </div>
+                <div class="card-body bg-secondary">
+
+                    
+                    <form method="post">
+                        {% csrf_token %}
+                        <p>Confirma que desea borrar la entrada "{{ object }}"?</p>
+                        
+                    </div>
+                    <div class="card-footer bg-secondary d-flex justify-content-end">
+                        <button type="submit" class="btn btn-danger">Confirmar</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock body%}

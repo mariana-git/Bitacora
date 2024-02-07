@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block body%}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-sm-6 m-auto">
+            <h3 class="text-center mt-5">
+
+                Eliminar entrada de bitácora
+            </h3>
+            <form method="post" class="mt-5">
+                {% csrf_token %}
+                {{ form | crispy }}
+                <div class=" d-flex justify-content-end">
+                    <button type="submit" class="btn btn-primary btn-lg mt-3">Confirmar</button>
+                </div>
+            </form>
+        </div>
+
+
+
+    </div>
+
+</div>
+
+{% endblock body%}
