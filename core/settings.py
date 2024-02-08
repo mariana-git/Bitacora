@@ -15,7 +15,7 @@ SECRET_KEY = 'django-insecure--5281szn0%i-qvs%-7l)tf3dv=92r+30@9!%g^vh0p@u6qouv^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -100,9 +100,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-ar'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Argentina/Buenos_Aires'
 
 USE_I18N = False
 
@@ -113,14 +113,8 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),] 
-# colectar estaticos Para PRD
-# python manage.py collectstatic
 STATIC_ROOT = BASE_DIR / 'static_root'
-
-# Docs
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+STATICFILES_DIRS = [BASE_DIR / 'static']
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -145,7 +139,8 @@ MESSAGE_TAGS = {
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 
-# Configura la duración de la sesión en segundos (15 minutos = 900 segundos)
-# SESSION_COOKIE_AGE = 900
-# Configura que la sesion expire al cerrar el navegador
-SESSION_EXPIRE_AT_BROWSER_CLOSE=True
+if not DEBUG:
+    # Configura la duración de la sesión en segundos (15 minutos = 900 segundos)
+    SESSION_COOKIE_AGE = 900
+    # Configura que la sesion expire al cerrar el navegador
+    SESSION_EXPIRE_AT_BROWSER_CLOSE=True

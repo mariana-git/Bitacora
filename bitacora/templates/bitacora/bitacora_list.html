@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block title %}
+- Listar
+{% endblock title %}
+
 
 {% block body%}
 <div class="p-3 pt-5 p-sm-5">
@@ -8,14 +12,23 @@
     <div class="row mt-3">
       <div class="col-md-2">
         <a href="{% url 'bitacora_add' %}" class="btn btn-primary btn-lg btn-block mb-2 mb-sm-0"
-        title="Agregar entrada de bitácora">
-        Agregar</a>
+          title="Agregar entrada de bitácora">
+          Agregar</a>
       </div>
       <div class="col-md-10 ">
         <div class="form-group">
           <div class="input-group input-group-lg">
-            <input type="search" class="form-control form-control-lg" placeholder="Buscar"
-              title="Busqueda por palabra clave en Tema o Comentarios" name="busqueda">
+            <div class="input-group-prepend d-none d-sm-inline">
+              <label class="input-group-text bg-secondary text-white" for="selectUsuarios">Usuario</label>
+            </div>
+            <select class="custom-select" id="selectUsuarios" name="usuario" title="Filtrar resultados por usuario">
+              <option value="">Todos</option>
+              {% for usuario_id, username in opciones_usuario %}
+                  <option value="{{ usuario_id }}">{{ username }}</option>
+              {% endfor %}
+          </select>
+            <input type="search" class="form-control form-control-lg" placeholder="Palabra clave..."
+              title="Busqueda por palabra clave en Tema o Comentarios" name="busqueda" >
             <div class="input-group-append">
               <button type="submit" class="btn btn-lg btn-secondary">
                 <i class="bi bi-search"></i>
@@ -31,11 +44,11 @@
     <div class="table-responsive mt-5">
       {% if is_paginated %}
       <span class="current-page d-flex justify-content-end">
-         Total {{ paginator.count }} resultados. 
+        Total {{ paginator.count }} resultados.
         <br>
         Mostrando página {{ page_obj.number }} de {{ paginator.num_pages }}</span>
-    {% endif %}
-      
+      {% endif %}
+
       <table class="table table-hover table-dark ">
         <thead>
           <tr>
@@ -48,8 +61,8 @@
         </thead>
         <tbody>
           {% for o in object_list %}
-          <tr>
-            <td >{{o.created|date:'Y/m/d H:i' }}
+          <tr data-usuario="{{ o.usuario.id }}">
+            <td>{{o.created|date:'Y/m/d H:i' }}
               {% if o.modified != o.created %}
               <br>
               <small class="text-muted"><i class="bi bi-arrow-repeat"></i> {{o.modified|date:'Y/m/d' }} </small>
@@ -59,10 +72,10 @@
             <td>{{o.tema}}</td>
             <td>{{o.comentario}}</td>
             <td class="d-flex justify-content-end">
-              <a class="btn btn-sm btn-warning mr-1" title="Editar entrada" href="{% url 'bitacora_change' o.id %}">
+              <a class="btn btn-sm btn-outline-warning mr-1" title="Editar entrada" href="{% url 'bitacora_change' o.id %}">
                 <i class="bi bi-pencil"></i>
               </a>
-              <a class="btn btn-sm btn-danger" title="Eliminar entrada" href="{% url 'bitacora_delete' o.id %}">
+              <a class="btn btn-sm btn-outline-danger" title="Eliminar entrada" href="{% url 'bitacora_delete' o.id %}">
                 <i class="bi bi-trash"></i></a>
             </td>
           </tr>
@@ -116,3 +129,23 @@
   </div>
 </div>
 {% endblock body%}
+
+
+{% block customJS %}
+
+<script>
+  // $(document).ready(function () {
+  //   $('#selectUsuarios').change(function () {
+  //     var usuarioSeleccionado = $(this).val();
+  //     // Si se selecciona "Todos", muestra todas las filas
+  //     if (usuarioSeleccionado== 'Todos') {
+  //       $('table tbody tr').show();
+  //     } else {
+  //       // Oculta todas las filas y luego muestra solo las del usuario seleccionado
+  //       $('table tbody tr').hide();
+  //       $('table tbody tr[data-usuario="' + usuarioSeleccionado + '"]').show();
+  //     }
+  //   });
+  // });
+</script>
+{% endblock customJS %}
