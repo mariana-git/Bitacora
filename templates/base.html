@@ -36,7 +36,8 @@
 <body class="bg-dark text-light">
     <header class="pt-2 fixed-top border-bottom border-primary bg-secondary">
         <nav class="navbar navbar-dark bg-secondary d-flex justify-content-between">
-            <a class="navbar-brand font-weight-bolder" href="{% url 'bitacora_list' %}" title="Regresar a la página principal">BITÁCORA</a>
+            <a class="navbar-brand font-weight-bolder" href="{% url 'bitacora_list' %}"
+                title="Regresar a la página principal">BITÁCORA</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample01"
                 aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -61,7 +62,8 @@
                     </li>
                     <div class="dropdown-divider"></div>
                     <li class="nav-item">
-                        <a class="dropdown-item text-dark font-weight-bold" href="{%  url 'edit_profile' %}" title="Editar datos de perfil">
+                        <a class="dropdown-item text-dark font-weight-bold" href="{%  url 'edit_profile' %}"
+                            title="Editar datos de perfil">
                             <i class="bi bi-chevron-right pr-2"></i>
                             Editar perfil</a>
                     </li>
@@ -93,7 +95,7 @@
         {% if messages %}
         {% for message in messages %}
         <div class="alert alert-{{ message.tags }} alert-dismissible fade show mt-5" role="alert">
-                {{ message }}
+            {{ message }}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -142,6 +144,8 @@
 
     {% block customJS %}
     {% endblock customJS %}
+
+
 
 
 </body>

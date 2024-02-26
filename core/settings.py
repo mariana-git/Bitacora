@@ -126,7 +126,7 @@ DATETIME_FORMAT="d/m/Y"
 # LOGIN_URL = 'login'
 # LOGIN_REDIRECT_URL = 'login'
 LOGIN_URL = '/'
-LOGIN_REDIRECT_URL= 'bitacora/listar'
+LOGIN_REDIRECT_URL= 'bitacora/listar/'
 LOGOUT_REDIRECT_URL = ''
 
 MESSAGE_TAGS = {

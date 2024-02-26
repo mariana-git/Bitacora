@@ -62,10 +62,10 @@
         <tbody>
           {% for o in object_list %}
           <tr data-usuario="{{ o.usuario.id }}">
-            <td>{{o.created|date:'Y/m/d H:i' }}
+            <td>{{o.created|date:'d/m/Y H:i' }}
               {% if o.modified != o.created %}
               <br>
-              <small class="text-muted"><i class="bi bi-arrow-repeat"></i> {{o.modified|date:'Y/m/d' }} </small>
+              <small class="text-muted"><i class="bi bi-arrow-repeat"></i> {{o.modified|date:'d/m/Y' }} </small>
               {% endif %}
             </td>
             <td>{{o.usuario}}</td>

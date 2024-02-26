@@ -7,10 +7,10 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin', admin.site.urls),
     path('', auth_views.LoginView.as_view(template_name='login.html'),name='login'),
-    path('bitacora/', include('bitacora.urls')),
-    path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
+    path('', include('bitacora.urls')),
+    path('logout', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
 ]
 
 
