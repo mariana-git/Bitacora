@@ -30,6 +30,8 @@
 ``` python manage.py runserver``` 
 
 ## Pantallas
+### Login
+![image](https://github.com/mariana-git/Bitacora/assets/88113403/a9023fc7-3ee8-4870-914a-e94ca6f47d7a)
 ### Listado
 ![image](https://github.com/mariana-git/Bitacora/assets/88113403/dd545bde-d9a1-47ef-8714-0a8c70615dda)
 ### Creación
